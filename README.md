@@ -1,24 +1,15 @@
-# README
+##
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- git clone
+- bundle install
+- rails console
 
-Things you may want to cover:
+```
+ModelWithKeyAndVersion = Struct.new(:cache_key, :cache_version)
+model_1_cache_1 = ModelWithKeyAndVersion.new("model/1", "1")
+model_1_cache_2 = ModelWithKeyAndVersion.new("model/1", "2")
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rails.cache.fetch(model_1_cache_1) { "woohoo" }
+puts Rails.cache.read(model_1_cache_1) # => "woohoo"
+puts Rails.cache.read(model_1_cache_2) # => "woohoo"
+```

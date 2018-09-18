@@ -1,0 +1,19 @@
+<h2>Schneems</h2>
+<% @user = User.where(name: "schneems").first_or_create %>
+<h3>Uncached</h3>
+<%= render partial: "user", collection: [@user] %>
+<% sleep 1 %>
+<h3>Cached</h3>
+<%= render partial: "user", cached: true, collection: [@user] %>
+<% sleep 1 %>
+<%= render partial: "user", cached: true, collection: [@user] %>
+
+<h2>Richard</h2>
+<% @user.name = "richard"; @user.save! %>
+<h3>Uncached</h3>
+<%= render partial: "user", collection: [@user] %>
+<% sleep 1 %>
+<h3>Cached</h3>
+<%= render partial: "user", cached: true, collection: [@user] %>
+<% sleep 1 %>
+<%= render partial: "user", cached: true, collection: [@user] %>

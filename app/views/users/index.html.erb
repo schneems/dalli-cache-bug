@@ -1,3 +1,5 @@
+Cache class: <%= Rails.cache.class %>
+
 <h2>Schneems</h2>
 <% @user = User.where(name: "schneems").first_or_create %>
 <h3>Uncached</h3>
